@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Preguntas</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 text-right">
+      <%= link_to '<strong>Hacer una pregunta</strong>'.html_safe, new_question_path, class:'btn btn-primary' %>
+    </div>
+  </div><br>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table class="table">
+        <tbody>
+          <% @questions.each do |question| %>
+          <tr>
+            <td class="text-center">
+              <h4><%= question.votes.count %></h4>
+              <p>Votos</p>
+            </td>
+            <td class="text-center">
+              <h4><%= question.answers.count %></h4>
+              <p>Respuestas</p>
+            </td>
+            <td class="text-left link-center">
+              <h4><%= link_to question.title, question, class:'custom-color'%></h4>
+              <p><%= question.user.email %> preguntó hace <% elapsed=Time.now.to_time-question.created_at.to_time%>
+                <% if (elapsed.to_i/(60*60*24)) >30 %>
+                <%= (elapsed.to_i/(60*60*24))/30 %> meses
+                <% elsif (elapsed.to_i/(60*60*24)) <1 %>
+                <%= (elapsed.to_i/(60*60)) %> horas
+                <% else %>
+                <%= (elapsed.to_i/(60*60*24)) %> dias
+                <% end %>
+              </p>
+            </td>
+            <td></td>
+          </tr>
+            <% end %>
+        </tbody>
+      </table><br>
+    </div>
+  </div>
+</div>

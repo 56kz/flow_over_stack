@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flowoverstack</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+<body>
+  <%= render 'layouts/header' %>
+
+    <% if notice %>
+      <div class="col-md-6 col-md-offset-3 alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class=" col-md-6 col-md-offset-3 alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <%=yield %>
+
+    <nav class="navbar-wrapper navbar-inverse navbar-fixed-bottom">
+      <div class="container-fluid">
+        <p class="navbar-text">&copy; 2018, by: 56Kz</p>
+        <a href="https://github.com/56kz" class="btn navbar-btn btn-default" target="_blank">GitHub</a>
+      </div>
+    </nav>
+
+</body>
+</html>

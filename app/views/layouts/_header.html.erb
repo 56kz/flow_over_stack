@@ -1,0 +1,39 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid col-md-10 col-md-offset-1">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Flow<strong>Overstack</strong></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active">
+
+          <% if user_signed_in? %>
+          <li><a href=""><%= current_user.email %></a></li>
+          <li><%= link_to 'Salir', destroy_user_session_path, method: 'DELETE'%></li>
+          <% else %>
+          <li><%= link_to 'Regístrate', new_user_registration_path, method: 'GET'%></li>
+          <li><%= link_to 'Ingresa', new_user_session_path, method: 'GET'%></li>
+          <%end%>
+          <li><%= form_tag questions_index_path, class:'navbar-form navbar-left', method: :get do %>
+            <div class="form-group">
+              <%= text_field_tag :terms, params[:terms], class: "form-control", placeholder: "Buscar..." %>
+            </div>
+            <%= submit_tag 'Buscar', name: nil, class: "btn btn-default btn-md" %>
+            <% end %>
+            
+          </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
